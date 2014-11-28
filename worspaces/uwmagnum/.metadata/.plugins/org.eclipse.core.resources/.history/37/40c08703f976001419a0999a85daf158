@@ -1,0 +1,38 @@
+package za.co.alllife.magnum.uw.controller.bloods.submission;
+
+import org.apache.log4j.Logger;
+
+import com.google.inject.Inject;
+import com.vaadin.ui.AbstractOrderedLayout;
+import com.vaadin.ui.Component;
+
+import za.co.alllife.magnum.uw.view.bloods.submission.BloodsSubmissionView;
+import za.co.alllife.magnum.uw.view.bloods.submission.BloodsTestResultListView;
+import za.co.nimbletech.core.mvc.Controller;
+
+public class BloodsSubmissionViewController implements Controller {
+	private static final Logger log = 
+			Logger.getLogger (BloodsSubmissionViewController.class);
+	
+	private BloodsSubmissionView view;
+	private BloodsTestResultListViewController resultListView;
+	
+	@Inject
+	public BloodsSubmissionViewController (BloodsSubmissionView view, BloodsTestResultListViewController resultListView) {
+		this.view = view;
+		this.resultListView = resultListView;
+		
+		view.setBloodsResultListView ((BloodsTestResultListView) resultListView.getView ());
+		view.setUploadFile();
+	}
+	
+	@Override
+	public void addToLayout (AbstractOrderedLayout parent) {
+		parent.addComponent (getView ());
+	}
+
+	@Override
+	public Component getView () {
+		return (Component) view;
+	}
+}

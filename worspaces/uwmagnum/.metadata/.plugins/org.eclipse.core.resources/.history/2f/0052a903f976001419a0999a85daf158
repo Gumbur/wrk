@@ -1,0 +1,6 @@
+package za.co.alllife.magnum.uw.view.bloods.submission;
+
+public interface BloodsSubmissionView {
+	void setBloodsResultListView (BloodsTestResultListView view);
+	void setUploadFile();
+}
